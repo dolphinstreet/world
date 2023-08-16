@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.map{
+    background-color: rgb(143, 192, 203);
+    width:60vw;
+    height: 100vh;
+}
+
+.land{
+    stroke: white;
+    stroke-width: 1;
+    fill: rgba(100, 110, 106, 0.502);
+}
+
+.land.win{
+       fill: rgb(72, 208, 140);
+}
+
+.land:not(.win):not(.active):hover{
+    fill: rgba(37, 52, 46, 0.502);
+}
+
+.land.active{
+    fill: rgb(45, 46, 60);
+}
+
+input{
+    height: 50px;
+}
