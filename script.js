@@ -4,10 +4,12 @@ let input = document.querySelector("#guessBar");
 let score = document.querySelector("#score");
 let totalCountries=document.querySelector("#totalCountries");
 let guessedCountries = 0;
+let timer = document.getElementById("timer");
+
 input.disabled = true;
-
 countries.forEach(country => {
-
+    
+    timerFunction(20, timer)
     country.addEventListener("click", () => {
         input.disabled = false;
         input.focus()
@@ -42,4 +44,16 @@ function updateScore() {
     score.innerHTML = guessedCountries;
     totalCountries.innerHTML = countries.length;
 }
+
+function timerFunction(minutes, timer ){
+    let seconds= minutes*60;
+    let counter =""
+    setInterval(() => {
+        counter=`${Math.floor(seconds/60)}:${seconds%60}`;
+        timer.innerHTML=counter;
+        seconds--
+    }, 1000);
+}
+
+
 
