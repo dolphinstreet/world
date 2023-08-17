@@ -1,7 +1,8 @@
-let countries = document.querySelectorAll(".land")
+let countries = document.querySelectorAll(".land");
 let activeCountry = null;
-let input = document.querySelector("#guessBar")
-let score = document.querySelector("#score")
+let input = document.querySelector("#guessBar");
+let score = document.querySelector("#score");
+let totalCountries=document.querySelector("#totalCountries");
 let guessedCountries = 0;
 input.disabled = true;
 
@@ -39,5 +40,6 @@ function clearInput() {
 function updateScore() {
     guessedCountries++
     score.innerHTML = guessedCountries;
+    totalCountries.innerHTML = countries.length;
 }
 
