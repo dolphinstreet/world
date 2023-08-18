@@ -1,36 +1,76 @@
-body{
+body {
     margin: 0;
     padding: 0;
-    display: flex;
-}
-
-.map{
-    background-color: rgb(143, 192, 203);
-    width:60vw;
+    box-sizing: border-box;
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
 }
 
-.land{
+.map_container {
+    display: flex;
+    flex-direction: column;
+}
+
+svg {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(143, 192, 203);
+
+}
+
+.land {
     stroke: white;
     stroke-width: 0.6;
     fill: rgba(100, 110, 106, 0.502);
 }
 
-.land.win{
-       fill: rgb(72, 208, 140);
+.land.win {
+    fill: rgb(72, 208, 140);
 }
 
-.land:not(.win):not(.active):hover{
+.land:not(.win):not(.active):hover {
     fill: rgba(37, 52, 46, 0.502);
 }
 
-.land.active{
+.land.active {
     fill: rgb(45, 46, 60);
 }
 
-input{
-    height: 50px;
+input {
+    height: 30px;
+    position: fixed;
+    padding: 15px 10px;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    width: 40vw;
+    border-radius: 50px;
+    outline: none;
+    border: 2px solid #bbb;
+    transition: 0.2s ease all;
+    font-size: 16px;
+    text-align: center;
+    font-family: inherit;
+    background-color: rgba(255, 255, 255, 0.792);
 }
+
+
+
+input[type=text]:focus {
+    border-color:rgb(45, 46, 60);
+}
+input[type=text]:disabled {
+    border-color:rgba(100, 110, 106, 0.502);
+    background-color: rgba(168, 191, 202, 0.792);
+}
+
+input::placeholder {
+    opacity: 1;
+    color: rgb(45, 46, 60);
+}
+
 
 .modal {
     position: fixed;
@@ -42,8 +82,8 @@ input{
     align-items: center;
     justify-content: center;
     z-index: 9999;
-  }
+}
 
-  #restartButton {
+#restartButton {
     display: none;
-  }
+}
