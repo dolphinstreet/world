@@ -14,9 +14,10 @@ input.disabled = true;
 function startGame() {
     countries.forEach(country => {
 
-        timerFunction(2, timer)
         country.addEventListener("click", () => {
+            timerFunction(20, timer)
             input.disabled = false;
+            input.placeholder = "Guess the country"
             input.focus()
 
             if (activeCountry) {
@@ -33,8 +34,11 @@ function startGame() {
                     if (input.value === activeCountry.getAttribute("title")) {
                         activeCountry.classList.remove("active")
                         activeCountry.classList.add("win")
+                        input.disabled = true;
+                        input.placeholder = "Choose a country"
                         updateScore();
                         clearInput();
+
                     }
                 })
             }, 200);
@@ -49,17 +53,17 @@ function updateScore() {
     guessedCountries++
     score.innerHTML = guessedCountries;
     totalCountries.innerHTML = countries.length;
-    if (guessedCountries===totalCountries){
+    if (guessedCountries === totalCountries) {
         endGame("You won")
     }
 }
 
-function timerFunction(minutes, timer) {
+function timerFunction(minutes, timerElement) {
     let seconds = minutes * 60;
     let counter = ""
     let intervalId = setInterval(() => {
         counter = `${Math.floor(seconds / 60)}:${seconds % 60}`;
-        timer.innerHTML = counter;
+        timerElement.innerHTML = counter;
         if (seconds === 0) {
             endGame("Time's up !");
             clearInterval(intervalId);
@@ -75,6 +79,8 @@ function endGame(message) {
     showModal(message);
     clearInput();
     input.disabled = true;
+    input.placeholder = ""
+
 }
 
 function showModal(message) {
@@ -98,6 +104,7 @@ function restartGame() {
     });
     clearInput()
     input.disabled = true;
+    input.placeholder = "Choose a country"
     //reset score
     score.innerHTML = guessedCountries;
     //start new game
