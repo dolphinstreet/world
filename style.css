@@ -8,15 +8,11 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
-.map_container {
-    display: flex;
-    flex-direction: column;
-}
 
 svg {
     height: 100vh;
     width: 100vw;
-    background-color: rgb(143, 192, 203);
+    background-color: rgb(184, 217, 224);
 
 }
 
@@ -54,21 +50,56 @@ input {
     text-align: center;
     font-family: inherit;
     background-color: rgba(255, 255, 255, 0.792);
+    filter: drop-shadow(0px 5px 10px rgba(39, 17, 77, 0.269));
 }
 
 
 
 input[type=text]:focus {
-    border-color:rgb(45, 46, 60);
+    border-color: rgb(45, 46, 60);
 }
+
 input[type=text]:disabled {
-    border-color:rgba(100, 110, 106, 0.502);
+    border-color: rgba(100, 110, 106, 0.502);
     background-color: rgba(168, 191, 202, 0.792);
+    filter:none;
+
 }
 
 input::placeholder {
     opacity: 1;
     color: rgb(45, 46, 60);
+}
+
+#game_info {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30px;
+    display: flex;
+    gap: 1rem;
+}
+
+#game_info div {
+    height: 30px;
+    min-width: 70px;
+    border-radius: 50px;
+    border: 0.5px solid white;
+    text-align: center;
+    background-color: rgb(45, 46, 60);
+    color: white;
+    filter: drop-shadow(0px 5px 10px rgba(39, 17, 77, 0.269));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#timer,
+#score,
+#totalCountries,
+#score-heading {
+    font-size: 13px;
+    margin: 0;
 }
 
 

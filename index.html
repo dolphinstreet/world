@@ -376,14 +376,17 @@
                 </g>
             </svg>
         </div>
-
         <input type="text" name="guessBar" id="guessBar" value="" placeholder="Guess the country">
-        
-        <h3>
-            Score : <span id="score">0</span> / <span id="totalCountries">176</span>
-        </h3>
-        <h2 id="timer">00:00</h2>
-
+        <div id="game_info">
+            <div>
+                <h2 id="timer">00:00</h2>
+            </div>
+            <div>
+                <h3 id="score-heading">
+                    <span id="score">0</span> / <span id="totalCountries">176</span>
+                </h3>
+            </div>
+        </div>
         <dialog class="modal" id="endGameDialog">
             <p id="dialogMessage"></p>
             <button id="restartButton">Play again</button>
