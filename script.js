@@ -10,19 +10,19 @@ const dialog = document.getElementById("endGameDialog");
 const dialogMessage = document.getElementById("dialogMessage");
 const dialogRestartButton = document.getElementById("restartButton");
 
-input.disabled = true;
+disableInput()
 function startGame() {
+
     countries.forEach(country => {
 
+        timerFunction(20, timer)
         country.addEventListener("click", () => {
-            timerFunction(20, timer)
-            input.disabled = false;
-            input.placeholder = "Guess the country"
+            enableInput()
             input.focus()
-
             if (activeCountry) {
                 activeCountry.classList.remove("active");
                 clearInput();
+
             }
             if (!country.classList.contains("win")) {
                 activeCountry = country;
@@ -31,11 +31,10 @@ function startGame() {
             setTimeout(() => {
                 input.addEventListener("keyup", () => {
                     clearTimeout()
-                    if (input.value === activeCountry.getAttribute("title")) {
+                    if (countryData[activeCountry.getAttribute("id")].some(name => removeAccents(name.toLowerCase())===removeAccents(input.value.toLowerCase()))) {
                         activeCountry.classList.remove("active")
                         activeCountry.classList.add("win")
-                        input.disabled = true;
-                        input.placeholder = "Choose a country"
+                        disableInput()
                         updateScore();
                         clearInput();
 
@@ -49,6 +48,42 @@ function startGame() {
 function clearInput() {
     input.value = ""
 }
+function disableInput() {
+    input.disabled = true;
+    input.placeholder = "Choose a country"
+}
+function enableInput() {
+    input.disabled = false;
+    input.placeholder = "Guess the country"
+}
+function removeAccents(input) {
+    return input
+        .replace(/[éèàîôûêùçïäëöü'ù-]/g, match => {
+            switch (match) {
+                case 'é': return 'e';
+                case 'è': return 'e';
+                case 'à': return 'a';
+                case 'î': return 'i';
+                case 'ô': return 'o';
+                case 'û': return 'u';
+                case 'ê': return 'e';
+                case 'ù': return 'u';
+                case 'ç': return 'c';
+                case 'ï': return 'i';
+                case 'ä': return 'a';
+                case 'ë': return 'e';
+                case 'ö': return 'o';
+                case 'ü': return 'u';
+                case '\'': return ' ';
+                case '-': return ' ';
+
+
+
+
+            }
+        });
+}
+
 function updateScore() {
     guessedCountries++
     score.innerHTML = guessedCountries;
@@ -78,8 +113,7 @@ function endGame(message) {
     dialog.close()
     showModal(message);
     clearInput();
-    input.disabled = true;
-    input.placeholder = ""
+    disableInput();
 
 }
 
@@ -103,8 +137,7 @@ function restartGame() {
         country.classList.remove("active", "win");
     });
     clearInput()
-    input.disabled = true;
-    input.placeholder = "Choose a country"
+    disableInput()
     //reset score
     score.innerHTML = guessedCountries;
     //start new game
