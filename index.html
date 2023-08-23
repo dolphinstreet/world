@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/3b7dfd1fc6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Delfina's world map</title>
 </head>
@@ -386,7 +387,17 @@
                     <span id="score">0</span> / <span id="totalCountries">176</span>
                 </h3>
             </div>
+            
         </div>
+        <div id="pause-game">
+            <i class="fa-solid fa-x"></i>
+        </div>
+        <dialog class="modal" id="pauseGameDialog">
+            <p id="pauseMessage">Are you sure ?</p>
+            <button id="quit-button">Quit</button>
+            <button id="resume-button">Resume</button>
+
+        </dialog>
         <dialog class="modal" id="endGameDialog">
             <p id="dialogMessage"></p>
             <button id="restartButton">Play again</button>

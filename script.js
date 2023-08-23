@@ -6,16 +6,22 @@ let totalCountries = document.querySelector("#totalCountries");
 let guessedCountries = 0;
 let timer = document.getElementById("timer");
 
-const dialog = document.getElementById("endGameDialog");
-const dialogMessage = document.getElementById("dialogMessage");
-const dialogRestartButton = document.getElementById("restartButton");
+const endGameDialog = document.getElementById("endGameDialog");
+const endGamedialogMessage = document.getElementById("dialogMessage");
+const endGameRestartButton = document.getElementById("restartButton");
+
+const pauseButton = document.querySelector("#pause-game i");
+
+const pauseDialog = document.getElementById("pauseGameDialog");
+const pauseDialogResumeButton = document.getElementById("resume-button");
+const pauseDialogQuitButton = document.getElementById("quit-button");
+
 
 disableInput()
 function startGame() {
 
     countries.forEach(country => {
-
-        timerFunction(20, timer)
+        timerFunction(0.5, timer)
         country.addEventListener("click", () => {
             enableInput()
             input.focus()
@@ -76,10 +82,6 @@ function removeAccents(input) {
                 case 'ü': return 'u';
                 case '\'': return ' ';
                 case '-': return ' ';
-
-
-
-
             }
         });
 }
@@ -109,22 +111,32 @@ function timerFunction(minutes, timerElement) {
 
 }
 
+pauseButton.addEventListener("click", () => {
+   pauseDialog.showModal()
+})
+
+pauseDialogResumeButton.addEventListener("click", () => {
+    console.log("resume")
+    pauseDialog.close()
+ })
+
 function endGame(message) {
-    dialog.close()
-    showModal(message);
+    endGameDialog.close()
+    pauseDialog.close()
+    showEndGameModal(message);
     clearInput();
     disableInput();
 
 }
 
-function showModal(message) {
-    dialogMessage.textContent = `${message} Score: ${guessedCountries}/${countries.length}`;
-    dialog.showModal();
-    dialogRestartButton.style.display = "block";
+function showEndGameModal(message) {
+    endGamedialogMessage.textContent = `${message} Score: ${guessedCountries}/${countries.length}`;
+    endGameDialog.showModal();
+    endGameRestartButton.style.display = "block";
 }
 
-dialogRestartButton.addEventListener("click", () => {
-    dialog.close();
+endGameRestartButton.addEventListener("click", () => {
+    endGameDialog.close();
     restartGame();
 });
 

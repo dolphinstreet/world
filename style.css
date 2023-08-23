@@ -82,7 +82,7 @@ input::placeholder {
 
 #game_info div {
     height: 30px;
-    min-width: 70px;
+    min-width: 80px;
     border-radius: 50px;
     border: 0.5px solid white;
     text-align: center;
@@ -92,6 +92,7 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 3px;
 }
 
 #timer,
@@ -100,6 +101,28 @@ input::placeholder {
 #score-heading {
     font-size: 13px;
     margin: 0;
+}
+#pause-game {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50px;
+    border: 0.5px solid white;
+    text-align: center;
+    background-color: rgb(45, 46, 60);
+    color: white;
+    filter: drop-shadow(0px 5px 10px rgba(39, 17, 77, 0.269));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+#pause-game i {
+    color: white;
+    font-size: 12px;
 }
 
 
