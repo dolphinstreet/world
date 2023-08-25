@@ -10,7 +10,7 @@ const endGameDialog = document.getElementById("endGameDialog");
 const endGamedialogMessage = document.getElementById("dialogMessage");
 const endGameRestartButton = document.getElementById("restartButton");
 
-const pauseButton = document.querySelector("#pause-game i");
+const pauseButton = document.querySelector("#pause-game");
 
 const pauseDialog = document.getElementById("pauseGameDialog");
 const pauseDialogResumeButton = document.getElementById("resume-button");
@@ -110,14 +110,24 @@ function timerFunction(minutes, timerElement) {
     }, 1000);
 
 }
+let pauseDialogOpen=false;
 
 pauseButton.addEventListener("click", () => {
    pauseDialog.showModal()
+   pauseDialogOpen=true;
 })
 
 pauseDialogResumeButton.addEventListener("click", () => {
-    console.log("resume")
     pauseDialog.close()
+    pauseDialogOpen=false;
+
+ })
+
+ pauseDialogQuitButton.addEventListener("click", () => {
+    endGame("You quit :(")
+    pauseDialog.close()
+    pauseDialogOpen=false;
+
  })
 
 function endGame(message) {
