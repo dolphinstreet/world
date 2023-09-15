@@ -37,7 +37,7 @@ function startGame() {
             setTimeout(() => {
                 input.addEventListener("keyup", () => {
                     clearTimeout()
-                    if (countryData[activeCountry.getAttribute("id")].some(name => removeAccents(name.toLowerCase())===removeAccents(input.value.toLowerCase()))) {
+                    if (countryData[activeCountry.getAttribute("id")].some(name => removeAccents(name.toLowerCase()) === removeAccents(input.value.toLowerCase()))) {
                         activeCountry.classList.remove("active")
                         activeCountry.classList.add("win")
                         disableInput()
@@ -110,25 +110,25 @@ function timerFunction(minutes, timerElement) {
     }, 1000);
 
 }
-let pauseDialogOpen=false;
+let pauseDialogOpen = false;
 
 pauseButton.addEventListener("click", () => {
-   pauseDialog.showModal()
-   pauseDialogOpen=true;
+    pauseDialog.showModal()
+    pauseDialogOpen = true;
 })
 
 pauseDialogResumeButton.addEventListener("click", () => {
     pauseDialog.close()
-    pauseDialogOpen=false;
+    pauseDialogOpen = false;
 
- })
+})
 
- pauseDialogQuitButton.addEventListener("click", () => {
-    endGame("You quit :(")
+pauseDialogQuitButton.addEventListener("click", () => {
+    endGame("You quit ")
     pauseDialog.close()
-    pauseDialogOpen=false;
+    pauseDialogOpen = false;
 
- })
+})
 
 function endGame(message) {
     endGameDialog.close()
