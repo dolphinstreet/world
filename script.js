@@ -16,6 +16,8 @@ const pauseDialog = document.getElementById("pauseGameDialog");
 const pauseDialogResumeButton = document.getElementById("resume-button");
 const pauseDialogQuitButton = document.getElementById("quit-button");
 
+let pause = true;
+
 
 disableInput()
 function startGame() {
@@ -23,6 +25,7 @@ function startGame() {
     countries.forEach(country => {
         timerFunction(0.5, timer)
         country.addEventListener("click", () => {
+            pause = false;
             enableInput()
             input.focus()
             if (activeCountry) {
@@ -94,11 +97,12 @@ function updateScore() {
         endGame("You won")
     }
 }
-
+let intervalId=null;
 function timerFunction(minutes, timerElement) {
     let seconds = minutes * 60;
     let counter = ""
-    let intervalId = setInterval(() => {
+    intervalId = setInterval(() => {
+        if (!pause){
         counter = `${Math.floor(seconds / 60)}:${seconds % 60}`;
         timerElement.innerHTML = counter;
         if (seconds === 0) {
@@ -107,6 +111,7 @@ function timerFunction(minutes, timerElement) {
         } else {
             seconds--
         }
+    }
     }, 1000);
 
 }
@@ -115,11 +120,13 @@ let pauseDialogOpen = false;
 pauseButton.addEventListener("click", () => {
     pauseDialog.showModal()
     pauseDialogOpen = true;
+    pause=true;
 })
 
 pauseDialogResumeButton.addEventListener("click", () => {
     pauseDialog.close()
     pauseDialogOpen = false;
+    pause=false;
 
 })
 
@@ -140,6 +147,8 @@ function endGame(message) {
 }
 
 function showEndGameModal(message) {
+    //time should be stopped
+    pause=true;
     endGamedialogMessage.textContent = `${message} Score: ${guessedCountries}/${countries.length}`;
     endGameDialog.showModal();
     endGameRestartButton.style.display = "block";
@@ -152,12 +161,21 @@ endGameRestartButton.addEventListener("click", () => {
 
 function restartGame() {
     //reset variables
+    
     activeCountry = null;
     guessedCountries = 0;
     // reset states
     countries.forEach(country => {
         country.classList.remove("active", "win");
     });
+    if (intervalId !== null) {
+    console.log(intervalId)
+
+        clearInterval(intervalId);
+    console.log(intervalId)
+
+        intervalId = null; // Reset the intervalId variable
+    }    
     clearInput()
     disableInput()
     //reset score
