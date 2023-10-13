@@ -22,8 +22,8 @@ let pause = true;
 disableInput()
 function startGame() {
 
+    timerFunction(20, timer)
     countries.forEach(country => {
-        timerFunction(0.5, timer)
         country.addEventListener("click", () => {
             pause = false;
             enableInput()
@@ -157,11 +157,11 @@ function showEndGameModal(message) {
 endGameRestartButton.addEventListener("click", () => {
     endGameDialog.close();
     restartGame();
+    timer.innerHTML="20:00"
 });
 
 function restartGame() {
     //reset variables
-    
     activeCountry = null;
     guessedCountries = 0;
     // reset states
@@ -169,11 +169,7 @@ function restartGame() {
         country.classList.remove("active", "win");
     });
     if (intervalId !== null) {
-    console.log(intervalId)
-
         clearInterval(intervalId);
-    console.log(intervalId)
-
         intervalId = null; // Reset the intervalId variable
     }    
     clearInput()
