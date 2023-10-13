@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3b7dfd1fc6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Delfina's world map</title>
@@ -387,21 +387,26 @@
                     <span id="score">0</span> / <span id="totalCountries">176</span>
                 </h3>
             </div>
-            
+
         </div>
         <div id="pause-game">
             <i class="fa-solid fa-x"></i>
         </div>
+
         <dialog class="modal" id="pauseGameDialog">
             <p id="pauseMessage">Are you sure ?</p>
-            <button id="quit-button">Quit</button>
-            <button id="resume-button">Resume</button>
-
+            <div class="buttons-wrapper">
+                <button class="button" id="quit-button">Quit</button>
+                <button class="button" id="resume-button">Resume</button>
+            </div>
         </dialog>
+
         <dialog class="modal" id="endGameDialog">
             <p id="dialogMessage"></p>
-            <button id="restartButton">Play again</button>
+            <p id="dialogMessageScore"></p>
+            <button class="button" id="restartButton">Play again</button>
         </dialog>
+
     </div>
     <script src="countries.js"></script>
     <script src="svg-pan-zoom.js"></script>

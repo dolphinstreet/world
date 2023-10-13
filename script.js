@@ -8,6 +8,7 @@ let timer = document.getElementById("timer");
 
 const endGameDialog = document.getElementById("endGameDialog");
 const endGamedialogMessage = document.getElementById("dialogMessage");
+const dialogMessageScore = document.getElementById("dialogMessageScore");
 const endGameRestartButton = document.getElementById("restartButton");
 
 const pauseButton = document.querySelector("#pause-game");
@@ -131,7 +132,7 @@ pauseDialogResumeButton.addEventListener("click", () => {
 })
 
 pauseDialogQuitButton.addEventListener("click", () => {
-    endGame("You quit ")
+    endGame("You quit")
     pauseDialog.close()
     pauseDialogOpen = false;
 
@@ -147,9 +148,9 @@ function endGame(message) {
 }
 
 function showEndGameModal(message) {
-    //time should be stopped
     pause=true;
-    endGamedialogMessage.textContent = `${message} Score: ${guessedCountries}/${countries.length}`;
+    endGamedialogMessage.textContent = message;
+    dialogMessageScore.textContent = `Score: ${guessedCountries}/${countries.length}`;
     endGameDialog.showModal();
     endGameRestartButton.style.display = "block";
 }
